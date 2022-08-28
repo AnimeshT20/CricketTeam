@@ -1,4 +1,4 @@
-package com.Cricket;
+package com.cricket;
 
 public class PlayerDetails implements Comparable<PlayerDetails>{
     private int id;
@@ -9,6 +9,8 @@ public class PlayerDetails implements Comparable<PlayerDetails>{
     private int ducks;
     private String playerType;
 
+    public static int totalBowlers = 0;
+    public static int totalKeepers = 0;
 
     public PlayerDetails(int id, String name, int playedMatch, int runs, int wickets, int ducks, String playerType) {
         this.id = id;
@@ -18,6 +20,8 @@ public class PlayerDetails implements Comparable<PlayerDetails>{
         this.wickets = wickets;
         this.ducks = ducks;
         this.playerType = playerType;
+        if(playerType.equalsIgnoreCase("Bowler")) ++totalBowlers;
+        if(playerType.equalsIgnoreCase("Wicketkeeper")) ++totalKeepers;
     }
 
     public int getId() {
@@ -80,13 +84,12 @@ public class PlayerDetails implements Comparable<PlayerDetails>{
     public String toString(){
         return id +
                 "\t" + name +
-                "\t" + playedMatch +
-                "\t" + runs +
-                "\t" + wickets +
-                "\t" + ducks +
-                "\t" + playerType;
+                "\t\t\t" + playedMatch +
+                "\t\t" + runs +
+                "\t\t" + wickets +
+                "\t\t" + ducks +
+                "\t\t" + playerType + "\n";
     }
-
     @Override
     public int compareTo(PlayerDetails p) {
         return this.name.compareTo(p.getName());
